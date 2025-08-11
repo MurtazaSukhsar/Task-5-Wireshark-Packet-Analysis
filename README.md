@@ -49,13 +49,19 @@ The objective of this task was to capture live network traffic using Wireshark, 
 
 Task-5-Wireshark
  ├── README.md
- ├── task5.pcapng         # Packet capture file
+ 
+ ├── task5.pcapng    # Packet capture file
+ 
  ├── screenshots
+
  │    ├── Screenshot_2025-08-11_03_22_19.png
- │    ├── Screenshot_2025-08-11_03_23_55.png
+ 
  │    ├── Screenshot_2025-08-11_03_24_01.png
+ 
  │    ├── Screenshot_2025-08-11_03_24_50.png
+ 
  │    ├── Screenshot_2025-08-11_03_25_08.png
+ 
  │    ├── Screenshot_2025-08-11_03_30_53.png
 
 🎯 Outcome
