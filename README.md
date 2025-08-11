@@ -1,53 +1,65 @@
-Task 5 – Wireshark Packet Analysis
+Task 5 – Capture and Analyze Network Traffic Using Wireshark
 
-Objective
----------
-The goal of this task is to analyze network traffic using Wireshark on Kali Linux. This includes capturing packets, viewing protocol statistics, and identifying protocol distribution.
+📌 Objective
+The objective of this task was to capture live network traffic using Wireshark, identify basic protocols, and analyze the captured packets.
 
-Tools Used
-----------
-- Kali Linux
-- Wireshark
+🛠 Tools Used
+- Wireshark 4.4.7 (Network protocol analyzer)
+- Kali Linux (VMware environment)
 
-Steps Performed
----------------
+📋 Steps Performed
 
-1. Starting Wireshark
-   - Open Wireshark in Kali Linux:
-     wireshark &
-   - Select the desired network interface (e.g., eth0 or wlan0) to capture packets.
-   - Click "Start Capturing" (blue shark fin icon).
+1️⃣ Starting Wireshark Capture
+- Opened Wireshark and selected the active interface `eth0`.
+- Started capturing packets (Screenshot: Screenshot_2025-08-11_03_22_19.png).
 
-2. Capturing Packets
-   - Allowed the capture to run for a few minutes to collect enough network traffic.
-   - Ensured various types of network activity occurred (e.g., browsing, pings).
+2️⃣ Capturing Live Traffic
+- While capturing, visited different websites and performed ping tests to generate various types of network traffic.
+- Observed a mix of TCP, ICMP, and TLS traffic.
+- Notable IPs in capture:
+  - 192.168.71.130 (local host in VM)
+  - External IPs like 23.58.31.18, 142.250.207.174, 104.18.38.233 (servers accessed)
+- Example capture in progress:
+  - TCP packets with ACK, FIN, and Keep-Alive flags
+  - ICMP ping requests/replies
+  - TLSv1.2 and TLSv1.3 encrypted traffic
+(Screenshots: Screenshot_2025-08-11_03_23_55.png, Screenshot_2025-08-11_03_24_01.png, Screenshot_2025-08-11_03_24_50.png)
 
-3. Viewing Protocol List
-   - Once enough packets were captured, stopped the capture (red square icon).
-   - Navigated to: Statistics → Protocol Hierarchy
-   - This displayed the protocol breakdown by percentage, packet count, and bytes.
+3️⃣ Filtering Specific Protocols
+- Applied `http` filter to isolate HTTP requests and responses.
+- Observed OCSP traffic for certificate status checks and plain HTTP requests.
+(Screenshot: Screenshot_2025-08-11_03_25_08.png)
 
-   From the capture:
-   - Top Protocols Detected:
-     * Ethernet
-     * IPv4
-     * UDP
-     * TCP
-     * TLS
-     * HTTP
-     * ARP
-     * ICMP
+4️⃣ Protocol Statistics
+- Generated Protocol Hierarchy Statistics in Wireshark to view packet distribution by protocol.
+- Summary from screenshot (Screenshot_2025-08-11_03_30_53.png):
 
-4. Saving the Capture
-   - Saved the capture file for documentation:
-     File → Save As → capture_task5.pcapng
+| Protocol | Packets | Percent of Total | Purpose |
+|----------|---------|-----------------|---------|
+| Ethernet | 3790    | 100%            | Data link layer |
+| IPv4     | 3790    | 100%            | Network layer |
+| TCP      | 2973    | 78.4%           | Reliable communication |
+| TLS      | 235     | 6.2%            | Secure web traffic |
+| HTTP     | 44      | 1.2%            | Web communication |
+| OCSP     | 42      | 1.1%            | Certificate status verification |
+| ICMP     | 19      | 0.5%            | Network diagnostics |
+| ARP      | 17      | 0.4%            | LAN address resolution |
 
-Observations
-------------
-- The majority of packets were UDP traffic (78.4%).
-- TCP accounted for ~20.6% of packets, with notable HTTP and TLS activity.
-- Minimal ARP and ICMP traffic was observed.
+📂 Repository Structure
 
-Conclusion
-----------
-Wireshark successfully captured and analyzed network packets in Kali Linux. The protocol hierarchy provided a clear view of the types of traffic present on the network and their distribution.
+Task-5-Wireshark
+ ├── README.md
+ ├── task5.pcapng         # Packet capture file
+ ├── screenshots
+ │    ├── Screenshot_2025-08-11_03_22_19.png
+ │    ├── Screenshot_2025-08-11_03_23_55.png
+ │    ├── Screenshot_2025-08-11_03_24_01.png
+ │    ├── Screenshot_2025-08-11_03_24_50.png
+ │    ├── Screenshot_2025-08-11_03_25_08.png
+ │    ├── Screenshot_2025-08-11_03_30_53.png
+
+🎯 Outcome
+- Successfully captured live traffic on eth0 interface.
+- Identified multiple protocols including TCP, ICMP, HTTP, TLS, OCSP, and ARP.
+- Practiced filtering in Wireshark to isolate traffic by protocol.
+- Learned to use Protocol Hierarchy Statistics to summarize packet distribution.
